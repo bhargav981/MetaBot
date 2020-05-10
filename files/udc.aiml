@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    
+    <category>
+    <pattern>*</pattern>
+    <template>
+        I'm Programmed to assist you in choosing Elective courses this Semester.<delay> 1</delay>
+        Would You like to choose a course?<delay>1.5</delay>
+        <button>
+            <text>Choose a Course</text>
+            <postback>I WANT TO CHOOSE A COURSE</postback>
+        </button>
+        <!-- <random>
+            <li>Please specify your domain/ specific sourse / interested classes of professors </li>
+            <li>can i know your domain / specific course / interested classes of professors </li>
+        </random>
+        -->
+    </template>
+  </category>
+  <category>
+      <pattern>I WANT TO CHOOSE A COURSE</pattern>
+      <template><srai># course ^</srai></template>
+  </category>
+  <category>
+      <pattern>hello #</pattern>
+      <template>
+        <random>
+            <li> Hi </li> 
+            <li> Hello there</li>  
+            <li> Good to see you</li>  
+        </random>
+        </template>
+  </category>
+  <category>
+      <pattern>Hi #</pattern>
+      <template><srai>hello #</srai></template>
+  </category>
+  
+  <category>
+      <pattern>what is *</pattern>
+      <template>
+          <condition name ="username">
+              <li value="unknown">I dont know what <person/> is </li>
+              <li> Your name is <get name="username"/>.  <srai> my name is <get name="username"/></srai></li>
+          </condition>
+          </template>
+  </category>
+  <category>
+      <pattern>what is your ^</pattern>
+      <template>
+          <think><set name ="properties"><star/></set></think>
+          <condition name="properties">
+              <li value="name">My name is <bot name="name"/></li>
+              <li value="age"> I am <bot name="age"/> years old</li>
+          </condition>
+          </template>
+  </category>
+  <category>
+      <pattern> # My name is *</pattern>
+      <template>
+          <random>
+            <li> Hi </li> 
+            <li> Hello </li>
+          </random> 
+         <think>
+         <set name = "username"><star index ="2"/></set>  
+         </think>
+       <get name = "username"/> How can i help you
+      </template>
+  </category>
+  <category>
+      <pattern># I am *</pattern>
+      <template>
+      <srai>my name is <star index ="2"/></srai>
+      </template>
+  </category>
+  
+</aiml>

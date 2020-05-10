@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+<topic name="professor">
+     <!--
+    <category>
+        <pattern># professors # available ^</pattern>
+        <template>
+             Sure, the following professors are teaching this semester
+            <ul>
+                <li>Manik Gupta</li>
+                <li>Chittaranjan Hota</li>
+                <li>Niranjan Swain</li>
+                <li>Rishi Kumar</li>
+                <li>Tathagat Ray</li>
+                <li>Aruna Malapati</li>
+                <li>Dipanjan Chakraboty</li>
+                <li>N.L.Bhanumurthy</li>
+                <li>T.Nagaraju</li>
+                <li>Gururaj</li>
+                <li>R.Raghunathan</li>
+                <li>Santosh Mahapatra</li>
+            </ul>
+        </template>
+    </category>
+     <category>
+        <that># faculty # industry #</that>
+        <pattern># faculty # available #</pattern>
+        <template><srai>professors available</srai></template>
+    </category>
+    -->
+    <category>
+        <pattern># <set>professors</set> teach ^</pattern>
+        <template>
+            Prof <star index="2"/> teaches <map name="profcourses"><star index="2"/></map> course
+        </template>
+    </category>
+    
+    <category>
+        <pattern># <set>courses</set> course ^</pattern>
+        <template>
+            Great Choice!
+            <button>
+                <text>ERP</text>
+                <url>https://erp.bits-pilani.ac.in/</url>
+            </button>
+        </template>
+    </category>
+    <category>
+        <pattern>*</pattern>
+        <template>
+            Can you select a Professor form the following
+            <ul>
+                <li>Manik Gupta</li>
+                <li>Chittaranjan Hota</li>
+                <li>Niranjan Swain</li>
+                <li>Rishi Kumar</li>
+                <li>Tathagat Ray</li>
+                <li>Aruna Malapati</li>
+                <li>Dipanjan Chakraboty</li>
+                <li>N.L.Bhanumurthy</li>
+                <li>T.Nagaraju</li>
+                <li>Gururaj</li>
+                <li>R.Raghunathan</li>
+                <li>Santosh Mahapatra</li>
+            </ul>
+        </template>
+    </category>
+    
+</topic>
+</aiml>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+   <!-- <category>
+        <pattern># <set>courses</set> course ^</pattern>
+        <template>
+            Great Choice!
+            <button>
+                <text>ERP</text>
+                <url>https://erp.bits-pilani.ac.in/</url>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># courses # available ^</pattern>
+        <template>
+            These are following courses available this semester
+             <ul>
+                <li>Data Mining</li>
+                <li>Artificial Intelligence</li>
+                <li>FOFA</li>
+                <li>Machine Learning</li>
+                <li>BAV</li>
+                <li>DRM</li>
+                <li>Modern Physics Lab</li>
+                <li>Optics Lab</li>
+                <li>Quantum Physics</li>
+                <li>Chem F111</li>
+                <li>Organic Chemistry</li>
+                <li>Inorganic Chemistry</li>
+            </ul>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># domain <set>courses</set> #</pattern>
+        <template>
+             <think><set name ="tcor"><star index="2"/></set></think>
+             <star index="2"/> comes under 
+             <condition name="tcor">
+                 <li value="Data Mining"> Data Science domain.</li>
+                 <li value="Artificial Intelligence"> Data Science domain.</li>
+                 <li value="Machine Learning"> Data Science domain.</li>
+                 <li value="FOFA"> Finance domain.</li>
+                 <li value="BAV"> Finance domain</li>
+                 <li value="DRM"> Finance domain</li>
+                 <li value="Modern Physics Lab"> Physics domain</li>
+                 <li value="Optics Lab"> Physics domain</li>
+                 <li value="Quantum Physics"> Physics domain</li>
+                 <li value="Chem F111"> Chemistry domain</li>
+                 <li value="Inorganic Chemistry"> Chemistry domain</li>
+                 <li value="Organic Chemistry"> Chemistry domain</li>
+                 <li value="unknown"> no domain</li>
+             </condition>
+        </template>
+    </category>
+    <category>
+        <pattern># <set>courses</set> # domain ^</pattern>
+        <template><srai>domain <star index="2"/></srai></template>
+    </category>
+    -->
+    <category>
+        <pattern># <set>professors</set> ^</pattern>
+        <template>Prof <star index="2"/> teaches <map name="profcourses"><star index="2"/></map> course </template>
+    </category>
+    <category>
+     <pattern># course # <set>professors</set> ^</pattern>
+     <template><srai># <star index="3"/> ^</srai></template>
+    </category>
+    <category>
+        <pattern># course ^</pattern>
+        <template>
+            Sure I can do that. <delay> 1.5 </delay>
+            can you let me know which domain you're interested in
+            <think><set name="topic">domain</set></think>
+        </template>
+    </category>
+    
+</aiml>

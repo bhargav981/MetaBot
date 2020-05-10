@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+<topic name="domain">
+     <category>
+        <pattern># domains # available ^</pattern>
+        <template>
+            Sure, the following domains are available
+            <ul>
+                <li>Data Science</li>
+                <li>Finance</li>
+                <li>Physics</li>
+                <li>Chemistry</li>
+            </ul>
+        </template>
+    </category>
+    <category>
+        <pattern># <set>domains</set> #</pattern>
+        <template>
+            <think><set name ="dom1"><star index="2"/></set></think>
+            These are the courses under <star index="2"/>
+            <condition name="dom1">
+              <li value="Data Science"> 
+              <ul>
+                <li>Data Mining</li>
+                <li>Machine Learning</li>
+                <li>Artificial Intelligence</li>
+            </ul> </li>
+              <li value="Finance"><ul>
+                <li>FOFA</li>
+                <li>DRM</li>
+                <li>BAV</li>
+            </ul> </li>
+              <li value="Physics"> <ul>
+                <li>Modern Phisics Lab</li>
+                <li>Optics Lab</li>
+                <li>Quantum Physics</li>
+            </ul></li>
+              <li value="Chemistry"><ul>
+                <li>Chem F111</li>
+                <li>Organic Chemistry</li>
+                <li>Inorganic Chemistry</li>
+            </ul> </li>
+          </condition>
+        </template>
+    </category>
+   <category>
+        <pattern># courses # available ^</pattern>
+        <template>
+            These are following courses available this semester
+             <ul>
+                <li>Data Mining</li>
+                <li>Artificial Intelligence</li>
+                <li>FOFA</li>
+                <li>Machine Learning</li>
+                <li>BAV</li>
+                <li>DRM</li>
+                <li>Modern Physics Lab</li>
+                <li>Optics Lab</li>
+                <li>Quantum Physics</li>
+                <li>Chem F111</li>
+                <li>Organic Chemistry</li>
+                <li>Inorganic Chemistry</li>
+            </ul>
+        </template>
+    </category>
+    <category>
+        <pattern># domain <set>courses</set> #</pattern>
+        <template>
+             <think><set name ="tcor"><star index="2"/></set></think>
+             <star index="2"/> comes under 
+             <condition name="tcor">
+                 <li value="Data Mining"> Data Science domain.</li>
+                 <li value="Artificial Intelligence"> Data Science domain.</li>
+                 <li value="Machine Learning"> Data Science domain.</li>
+                 <li value="FOFA"> Finance domain.</li>
+                 <li value="BAV"> Finance domain</li>
+                 <li value="DRM"> Finance domain</li>
+                 <li value="Modern Physics Lab"> Physics domain</li>
+                 <li value="Optics Lab"> Physics domain</li>
+                 <li value="Quantum Physics"> Physics domain</li>
+                 <li value="Chem F111"> Chemistry domain</li>
+                 <li value="Inorganic Chemistry"> Chemistry domain</li>
+                 <li value="Organic Chemistry"> Chemistry domain</li>
+                 <li value="unknown"> no domain</li>
+             </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># <set>courses</set> # domain ^</pattern>
+        <template><srai>domain <star index="2"/></srai></template>
+    </category>
+     <category>
+        <pattern>*</pattern>
+        <template>
+            Can you select a Domain from the following
+             <ul>
+                <li>Data Science</li>
+                <li>Finance</li>
+                <li>Physics</li>
+                <li>Chemistry</li>
+            </ul>
+        </template>
+    </category>
+    <category>
+        <pattern># <set>courses</set> course ^</pattern>
+        <template>
+            Great Choice!
+            <button>
+                <text>ERP</text>
+                <url>https://erp.bits-pilani.ac.in/</url>
+            </button>
+        </template>
+    </category>
+    <category>
+        <that> # domain # interested ^</that>
+        <pattern># no ^ </pattern>
+        <template>why is that</template>
+    </category>
+    <category>
+        <that> # domain # interested ^</that>
+        <pattern># not ^</pattern>
+        <template><srai># no ^</srai></template>
+    </category>
+     <category>
+        <that>why is that</that>
+        <pattern>*</pattern>
+        <template>Are u telling me you're not interested in any domain</template>
+    </category>
+    <category>
+        <that>why is that</that>
+        <pattern>$i am not sure</pattern>
+        <template><srai>*</srai></template>
+    </category>
+    <category>
+        <that># telling *</that>
+        <pattern># yes ^</pattern>
+        <template>
+            can you let me know the name of faculty you like <delay> 1.5 </delay>
+            Or you want to take a look at the industry trends to get an idea for the domain.
+            <button>
+                <text>ubuntupit</text>
+                <url>https://www.ubuntupit.com/</url>
+            </button>
+        </template>
+    </category>
+    <category>
+        <that># telling *</that>
+        <pattern>_</pattern>
+        <template><srai># yes ^</srai></template>
+    </category>
+    <category>
+        <that># telling *</that>
+        <pattern># no ^</pattern>
+        <template>
+             Can you select a Domain from the following
+             <ul>
+                <li>Data Science</li>
+                <li>Finance</li>
+                <li>Physics</li>
+                <li>Chemistry</li>
+            </ul>
+        </template>
+    </category>
+    <category>
+        <that># telling *</that>
+        <pattern># not ^</pattern>
+        <template><srai># no ^</srai></template>
+    </category>
+    <category>
+        <that># ubuntupit #</that>
+        <pattern># like # <set>professors</set> ^ </pattern>
+        <template> 
+            That's good.<delay>1.5</delay>
+            Prof <star index="3"/> teaches <map name="profcourses"><star index="3"/></map> course.
+            <think><set name ="topic">professor</set></think>
+        </template>
+    </category>
+    <category>
+        <that># ubuntupit #</that>
+        <pattern># faculty # available ^</pattern>
+        <template>
+            The following faculty are teaching this semester
+            <ul>
+                <li>Manik Gupta</li>
+                <li>Chittaranjan Hota</li>
+                <li>Niranjan Swain</li>
+                <li>Rishi Kumar</li>
+                <li>Tathagat Ray</li>
+                <li>Aruna Malapati</li>
+                <li>Dipanjan Chakraboty</li>
+                <li>N.L.Bhanumurthy</li>
+                <li>T.Nagaraju</li>
+                <li>Gururaj</li>
+                <li>R.Raghunathan</li>
+                <li>Santosh Mahapatra</li>
+            </ul>
+             <think><set name ="topic">professor</set></think>
+        </template>
+    </category>
+    <category>
+        <that># ubuntupit #</that>
+        <pattern>#</pattern>
+        <template>
+             Can you select a Professor form the following
+            <ul>
+                <li>Manik Gupta</li>
+                <li>Chittaranjan Hota</li>
+                <li>Niranjan Swain</li>
+                <li>Rishi Kumar</li>
+                <li>Tathagat Ray</li>
+                <li>Aruna Malapati</li>
+                <li>Dipanjan Chakraboty</li>
+                <li>N.L.Bhanumurthy</li>
+                <li>T.Nagaraju</li>
+                <li>Gururaj</li>
+                <li>R.Raghunathan</li>
+                <li>Santosh Mahapatra</li>
+            </ul>
+             <think><set name ="topic">professor</set></think>
+        </template>
+    </category>
+   <!-- <category>
+        <that># telling *</that>
+        <pattern>$i am not sure</pattern>
+        <template><srai>yes</srai></template>
+    </category>
+    <category>
+        <that># faculty # industry #</that>
+        <pattern># <set>professors</set> ^</pattern>
+        <template>
+            That's good.<delay>1.5</delay>
+            Prof <star index="2"/> teaches <map name="profcourses"><star index="2"/></map> course
+        </template>
+    </category>
+    <category>
+        <that># faculty # industry #</that>
+        <pattern># faculty # available #</pattern>
+        <template></template>
+    </category>
+    <category>
+        <that># professors # interested #</that>
+        <pattern>$i am not sure</pattern>
+        <template>
+            <srai></srai>
+             Do you want to know which faculty is teaching this semester
+            <think><set name ="topic">professor</set></think>
+        </template>
+    </category>
+    <category>
+        <that># professors # interested #</that>
+        <pattern># professors # available ^</pattern>
+        <template>
+          The following professors are teaching this semester
+            <ul>
+                <li>Manik Gupta</li>
+                <li>Chittaranjan Hota</li>
+                <li>Niranjan Swain</li>
+                <li>Rishi Kumar</li>
+                <li>Tathagat Ray</li>
+                <li>Aruna Malapati</li>
+                <li>Dipanjan Chakraboty</li>
+                <li>N.L.Bhanumurthy</li>
+                <li>T.Nagaraju</li>
+                <li>Gururaj</li>
+                <li>R.Raghunathan</li>
+                <li>Santosh Mahapatra</li>
+            </ul>
+            <think><set name ="topic">professor</set></think>
+        </template>
+    </category>
+    -->
+</topic>
+</aiml>
